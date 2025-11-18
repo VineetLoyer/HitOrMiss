@@ -46,3 +46,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Kiro specs and hypothesis test data
+.kiro/
+.hypothesis/
