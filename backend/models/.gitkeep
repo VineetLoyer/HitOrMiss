@@ -1,0 +1,3 @@
+# Trained models will be saved here
+# - trained_model.pkl
+# - scaler.pkl
