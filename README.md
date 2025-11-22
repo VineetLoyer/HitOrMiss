@@ -15,7 +15,35 @@ A web application that predicts whether a Spotify track will be a hit or miss ba
 
 ## Quick Start
 
-### Backend Setup
+### Option 1: Docker (Recommended) 🐳
+
+The easiest way to run the entire application:
+
+1. Make sure you have [Docker](https://www.docker.com/get-started) and [Docker Compose](https://docs.docker.com/compose/install/) installed
+
+2. Clone the repository:
+```bash
+git clone https://github.com/VineetLoyer/HitOrMiss.git
+cd HitOrMiss
+```
+
+3. Start the application:
+```bash
+docker-compose up --build
+```
+
+4. Access the application:
+   - **Frontend**: http://localhost:3000
+   - **Backend API**: http://localhost:5000
+
+5. To stop the application:
+```bash
+docker-compose down
+```
+
+### Option 2: Manual Setup
+
+#### Backend Setup
 
 1. Navigate to the backend directory:
 ```bash
@@ -107,6 +135,73 @@ cd frontend
 npm test
 ```
 
+## Docker Commands
+
+### Build and Run
+```bash
+# Build and start all services
+docker-compose up --build
+
+# Run in detached mode (background)
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# View logs for specific service
+docker-compose logs -f backend
+docker-compose logs -f frontend
+```
+
+### Stop and Clean Up
+```bash
+# Stop services
+docker-compose stop
+
+# Stop and remove containers
+docker-compose down
+
+# Remove containers, networks, and volumes
+docker-compose down -v
+```
+
+### Individual Service Commands
+```bash
+# Build only backend
+docker build -t hitormiss-backend ./backend
+
+# Build only frontend
+docker build -t hitormiss-frontend ./frontend
+
+# Run backend container
+docker run -p 5000:5000 hitormiss-backend
+
+# Run frontend container
+docker run -p 3000:80 hitormiss-frontend
+```
+
 ## Development
 
 See individual README files in `frontend/` and `backend/` directories for detailed setup and development instructions.
+
+## Project Structure
+
+```
+HitOrMiss/
+├── backend/
+│   ├── app/                 # Flask application
+│   ├── data/                # Dataset files
+│   ├── models/              # Trained ML models
+│   ├── tests/               # Backend tests
+│   ├── Dockerfile           # Backend Docker config
+│   ├── requirements.txt     # Python dependencies
+│   └── run.py              # Application entry point
+├── frontend/
+│   ├── src/                 # React source code
+│   ├── public/              # Static assets
+│   ├── Dockerfile           # Frontend Docker config
+│   ├── nginx.conf           # Nginx configuration
+│   └── package.json         # Node dependencies
+├── docker-compose.yml       # Docker Compose configuration
+└── README.md               # This file
+```
